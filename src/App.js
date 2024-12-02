@@ -34,12 +34,14 @@ class App extends Component {
       oppositeLangIconId === window.$primaryLanguageIconId
         ? window.$secondaryLanguageIconId
         : window.$primaryLanguageIconId;
-    document
-      .getElementById(oppositeLangIconId)
-      .removeAttribute("filter", "brightness(40%)");
-    document
-      .getElementById(pickedLangIconId)
-      .setAttribute("filter", "brightness(40%)");
+         // Xóa viền của icon ngôn ngữ cũ
+  document.getElementById(oppositeLangIconId).style.border = "none";
+
+  // Thêm viền bo tròn cho icon ngôn ngữ được chọn
+  const pickedLangIcon = document.getElementById(pickedLangIconId);
+  pickedLangIcon.style.border = "3px solid #fff";  // Viền 2px, màu xanh dương
+  pickedLangIcon.style.borderRadius = "50%";          // Bo tròn
+  pickedLangIcon.style.padding = "4px";               // Khoảng cách bên trong
   }
 
   componentDidMount() {
@@ -95,7 +97,7 @@ class App extends Component {
           >
             <span
               className="iconify language-icon mr-5"
-              data-icon="twemoji-flag-for-flag-united-kingdom"
+              data-icon="twemoji-flag-for-flag-vietnam"
               data-inline="false"
               id={window.$primaryLanguageIconId}
             ></span>
@@ -111,7 +113,7 @@ class App extends Component {
           >
             <span
               className="iconify language-icon"
-              data-icon="twemoji-flag-for-flag-poland"
+              data-icon="twemoji-flag-for-flag-united-kingdom"
               data-inline="false"
               id={window.$secondaryLanguageIconId}
             ></span>
@@ -126,7 +128,7 @@ class App extends Component {
           resumeBasicInfo={this.state.resumeData.basic_info}
         />
         <Skills
-          sharedSkills={this.state.sharedData.skills}
+          resumeSkills={this.state.resumeData.skills}
           resumeBasicInfo={this.state.resumeData.basic_info}
         />
         <Experience
